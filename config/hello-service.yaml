@@ -1,0 +1,23 @@
+service:
+  name: hello-service
+  runtime: nodejs18.x
+  handler: index.handler
+  memory: 256
+  timeout: 30
+  
+  # API Gateway configuration
+  api:
+    path: /hello
+    method: GET
+    public: true
+    cors: true
+    
+  # Environment variables
+  environment:
+    STAGE: dev
+    LOG_LEVEL: info
+    
+  # Secrets (from AWS Secrets Manager)
+  secrets:
+    - name: API_KEY
+      secretId: hello-service/api-key

@@ -1,0 +1,9 @@
+{
+  "name": "hello-service",
+  "version": "1.0.0",
+  "description": "Hello service Lambda function",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.1400.0"
+  }
+}

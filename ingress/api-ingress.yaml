@@ -1,0 +1,28 @@
+ingress:
+  name: api-ingress
+  annotations:
+    route53.hostedZoneId: Z00976892A2KHU6N0F7PT
+    domain.existing: "true"  
+  tls:
+    - hosts:
+        - sample.domain.com
+      certificateArn: arn:aws:acm:us-east-1:123456789012:certificate/abcdef
+  rules:
+    - host: sample.domain.com
+      http:
+        paths:
+          - path: /hello
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-service
+          - path: /users
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service

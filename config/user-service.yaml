@@ -1,0 +1,30 @@
+service:
+  name: user-service
+  runtime: nodejs18.x
+  handler: index.handler
+  memory: 512
+  timeout: 60
+  
+  api:
+    path: /users
+    method: ANY
+    public: true
+    cors: true
+    
+  environment:
+    STAGE: dev
+    
+  # DynamoDB table configuration
+  dynamodb:
+    - name: UsersTableSample
+      partitionKey: userId
+      sortKey: email
+      billingMode: PAY_PER_REQUEST
+      globalSecondaryIndexes:
+        - name: EmailIndex
+          partitionKey: email
+      
+  # Secrets
+  secrets:
+    - name: DB_CREDENTIALS
+      secretId: user-service/db-credentials

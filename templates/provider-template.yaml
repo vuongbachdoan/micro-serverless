@@ -1,0 +1,9 @@
+provider:
+  name: aws
+  region: us-east-1
+  sdkVersion: latest
+  tags:
+    Project: MyProject
+    Environment: dev
+    Owner: TeamName
+  stackName: my-project-xxx

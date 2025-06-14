@@ -1,0 +1,44 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# TypeScript compiled output
+lib/
+dist/
+*.js
+*.js.map
+*.d.ts
+!jest.config.js
+
+# CDK output
+cdk.out/
+.cdk.staging/
+cdk-outputs.json
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/

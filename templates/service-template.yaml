@@ -1,0 +1,65 @@
+service:
+  # Basic service configuration
+  name: service-name
+  runtime: nodejs18.x  # nodejs18.x, nodejs16.x, python3.8, python3.9, etc.
+  handler: index.handler  # Path to the handler function
+  memory: 256  # Memory in MB
+  timeout: 30  # Timeout in seconds
+  
+  # API Gateway configuration
+  api:
+    path: /service-path  # API path
+    method: ANY  # HTTP method (GET, POST, PUT, DELETE, ANY)
+    public: true  # Whether the API is public or requires authentication
+    cors: true  # Whether to enable CORS
+    domain:  # Optional custom domain configuration
+      name: api.example.com
+      certificateArn: arn:aws:acm:region:account-id:certificate/certificate-id
+      hostedZoneId: hosted-zone-id  # Optional Route53 hosted zone ID
+    
+  # Environment variables
+  environment:
+    STAGE: dev
+    LOG_LEVEL: info
+    
+  # Secrets from AWS Secrets Manager
+  secrets:
+    - name: API_KEY  # Environment variable name
+      secretId: service-name/api-key  # Secret ID in Secrets Manager
+    
+  # DynamoDB tables
+  dynamodb:
+    - name: ServiceTable
+      partitionKey: id
+      sortKey: type  # Optional sort key
+      ttl: expiresAt  # Optional TTL attribute
+      billingMode: PAY_PER_REQUEST  # PROVISIONED or PAY_PER_REQUEST
+      readCapacity: 5  # Required if billingMode is PROVISIONED
+      writeCapacity: 5  # Required if billingMode is PROVISIONED
+      globalSecondaryIndexes:  # Optional GSIs
+        - name: TypeIndex
+          partitionKey: type
+          sortKey: createdAt
+    
+  # RDS database
+  rds:
+    instance: database-instance-name
+    engine: postgres  # mysql, postgres, aurora, aurora-mysql, aurora-postgresql
+    secrets:
+      - name: DB_CONNECTION
+        secretId: service-name/db-connection
+    
+  # S3 buckets
+  s3:
+    - name: ServiceBucket
+      access: readWrite  # read, write, or readWrite
+    
+  # VPC configuration
+  vpc:
+    id: vpc-12345  # Optional existing VPC ID
+    createNew: false  # Whether to create a new VPC
+    subnets:  # Optional subnet IDs
+      - subnet-12345
+      - subnet-67890
+    securityGroups:  # Optional security group IDs
+      - sg-12345
