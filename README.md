@@ -65,7 +65,7 @@ serverless-microservices/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/serverless-microservices
+git clone https://github.com/vuongbachdoan/micro-serverless.git
 
 # Install dependencies
 npm install
