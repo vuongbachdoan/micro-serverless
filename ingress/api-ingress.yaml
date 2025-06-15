@@ -5,10 +5,10 @@ ingress:
     domain.existing: "true"  
   tls:
     - hosts:
-        - sample.domain.com
-      certificateArn: arn:aws:acm:us-east-1:123456789012:certificate/abcdef
+        - sample.awscloudclubs.com
+      certificateArn: arn:aws:acm:us-east-1:955228589631:certificate/f5043bf7-29c2-48f6-a6d4-68f2c5f36f93
   rules:
-    - host: sample.domain.com
+    - host: sample.awscloudclubs.com
       http:
         paths:
           - path: /hello
@@ -21,8 +21,8 @@ ingress:
             backend:
               service:
                 name: user-service
-          - path: /api
+          - path: /orders
             pathType: Prefix
             backend:
               service:
-                name: api-service
+                name: orders-service

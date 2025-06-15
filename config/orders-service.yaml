@@ -1,0 +1,19 @@
+
+service:
+  name: orders-service
+  runtime: nodejs18.x
+  handler: index.handler
+  memory: 512
+  timeout: 60
+  
+  api:
+    path: /orders
+    method: ANY
+    public: false
+    
+  rds:
+    instance: orders-db
+    engine: postgres
+    secrets:
+      - name: DB_CONNECTION
+        secretId: orders-service/db-connection

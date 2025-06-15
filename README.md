@@ -225,10 +225,10 @@ ingress:
     domain.existing: "true"
   tls:
     - hosts:
-        - sample.domain.com
+        - sample.awscloudclubs.com
       certificateArn: arn:aws:acm:us-east-1:123456789012:certificate/abcdef
   rules:
-    - host: sample.domain.com
+    - host: sample.awscloudclubs.com
       http:
         paths:
           - path: /hello
@@ -287,17 +287,17 @@ If you're experiencing issues with custom domain resolution:
 
 2. **Verify DNS Records**: Check that the Route 53 record has been created correctly:
    ```bash
-   aws route53 list-resource-record-sets --hosted-zone-id YOUR_HOSTED_ZONE_ID --query "ResourceRecordSets[?Name=='sample.domain.com.']"
+   aws route53 list-resource-record-sets --hosted-zone-id YOUR_HOSTED_ZONE_ID --query "ResourceRecordSets[?Name=='sample.awscloudclubs.com.']"
    ```
 
 3. **Check API Gateway Custom Domain**: Verify the custom domain is properly set up in API Gateway:
    ```bash
-   aws apigateway get-domain-name --domain-name sample.domain.com
+   aws apigateway get-domain-name --domain-name sample.awscloudclubs.com
    ```
 
 4. **Verify Base Path Mappings**: Ensure the base path mapping exists:
    ```bash
-   aws apigateway get-base-path-mappings --domain-name sample.domain.com
+   aws apigateway get-base-path-mappings --domain-name sample.awscloudclubs.com
    ```
 
 5. **Use Direct API URL**: Access your API directly using the API Gateway URL. First, find your stack name (which includes the prefix from provider.yaml):
